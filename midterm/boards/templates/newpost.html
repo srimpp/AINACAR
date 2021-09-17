@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>새 게시물 작성</title>
+<link href="/static/css/mainstyle.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	input:readonly{
+		background:white;
+	}
+	th, td{padding:10px;}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	document.querySelector("#btnOk").onclick = chkFunc;
+}
+
+function chkFunc(){
+	//alert("a");
+	if(frm.name.value == "" || frm.passwd.value == "" ||
+			 frm.title.value == "" || frm.cont.value == ""){
+		alert("입력자료를 모두 채우시오");
+		return;
+	}
+	frm.submit();
+}
+
+</script>
+</head>
+
+<!-- header: 메뉴바 -->
+<!-------------------------------headerbegin---------------------->
+<header style='margin: auto; text-align:center;'>
+	<div class="navbar">
+		<div style="float:left; margin-top:15px; margin-right:40px;">
+		<a href='/' id='mainlogo'><img src='/static/images/mainlogo/AINACAR.png' width='200px'/></a>
+		</div>
+		<div style='display:inline-block; margin-top:15px; float:left;'>
+      		<a href="/" class="link7" style='display:inline-block;'>홈
+           	<span class="sub">Take me home</span>
+    		</a>
+			
+			<a href='/about' class="link7" style='display:inline-block;'>AINACAR이란?
+			<span class="sub">소개합니다</span>
+			</a>
+			
+			<a href='/carinfo/' class="link7" style='display:inline-block;'>자동차 정보
+			<span class="sub">알려드립니다</span>
+			</a>
+			
+			<div class='dropdown'>
+			<a href='/boards/list' class="link7" style='display:inline-block;'>게시판
+			<span class="sub">마음껏 둘러보세요</span></a>
+			<div class='dropdown-content'>
+				<a  href='../boards/list?type=free'>자유게시판</a> 
+				<a  href='../boards/list?type=oldcar'>중고차거래</a> 
+				<a  href='../boards/list?type=travle'>여행지추천</a>
+			</div>
+		</div>
+		</div>
+	<!-- 회원 -->
+		<div style=' display:inline-block; margin-top:20px; margin-left:40px; float:left;'>
+		{% if islogin == False or islogin == None %} 
+			
+			<a href="../members/newmember" class="link6">회원가입</a>
+			<!--  <a href='../members/newmember'style=''>회원가입</a> -->
+			
+			<a href="../members/main" class="link5">로그인</a> 
+			<!-- <a href='../members/main'>로그인</a> -->
+		{% else %} 
+			<a class="link3" href='../members/account'>어서오세요 {{username}}님</a>	
+			<!-- <a href='../members/account'>어서오세요 {{username}}님</a> -->
+			<a class="link3" href='../members/account'>내 정보</a>
+			<!-- <a href='../members/account'>내 정보</a> -->
+			<a href="../members/logout" class="link3">로그아웃</a>
+			<!-- <a href='../members/logout'>로그아웃</a> -->
+		{% endif %}
+		</div> 
+	</div>
+	<!-- end of navbar -->
+</header>
+<!-- --------------------------end of header------------------>
+
+
+
+<main>
+<h2 style='text-align:center;'> 새글 작성 </h2>
+<div style='color:white; background-color:#203864;border-radius:20px;padding:20px;'>
+<br><br>
+<form action="/boards/newpostok" name="frm" method="post">{% csrf_token %}
+<table class="table" style="width: 90%">
+	<tr>
+		<td>작성자</td>
+		<td><input type="text" name="name" value='{{username}}' readonly style='width:90%;'></td>
+	</tr>
+	<tr>
+		<td>글제목</td>
+		<td><input type="text" name="title" style="width: 90%"></td>
+	</tr>
+	<tr>
+		<td>태그</td>
+		<td>
+		<select name="type" style='width:180px;'>
+		<option value="free">자유게시판</option>
+		<option value="oldcar">중고차거래게시판</option>
+		<option value="travle">여행지공유게시판</option>
+		</select>
+		</td>
+	</tr>
+	<tr>
+		<td>글내용</td>
+		<td>
+			<textarea rows="15" cols="50" name="cont" style='width:93%; resize:none;'></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align: center;">
+			<input type="submit" value="등록" id="btnOk" style="z-index:10;border:1; color:#203864; padding:10px 30px;background-color:white">
+		</td>
+	</tr>
+</table>
+</form>
+</div>
+</main>
+</body>
+
+
+<!-- footer, 밑에 있는 팀명 목록 -->
+<!-------------------------------footerbegin---------------------->
+<footer>
+<br><br><br>
+
+<hr id='footerline'>
+<div style='text-align:center'>
+	<h2>경훈씨의 화성가는 붕붕2팀</h2>
+	<h3>김성우 권은별 조경훈 이승조 조광현</h3>
+</div>
+</footer>
+<!-------------------------------footerend---------------------->
+
+
+</html>

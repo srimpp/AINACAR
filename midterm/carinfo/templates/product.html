@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AINACAR - 상세보기</title>
+
+
+<link href="/static/css/mainstyle.css" rel="stylesheet" type="text/css">
+<link href="/static/css/products.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/static/js/products.js"></script>
+</head>
+
+
+<body>
+<!-- header: 메뉴바 -->
+<!-------------------------------headerbegin---------------------->
+<header style='margin: auto; text-align:center;'>
+	<div class="navbar">
+		<div style="float:left; margin-top:15px; margin-right:40px;">
+		<a href='/' id='mainlogo'><img src='/static/images/mainlogo/AINACAR.png' width='200px'/></a>
+		</div>
+		<div style='display:inline-block; margin-top:15px; float:left;'>
+      		<a href="/" class="link7" style='display:inline-block;'>홈
+           	<span class="sub">Take me home</span>
+    		</a>
+			
+			<a href='/about' class="link7" style='display:inline-block;'>AINACAR이란?
+			<span class="sub">소개합니다</span>
+			</a>
+			
+			<a href='/carinfo/' class="link7" style='display:inline-block;'>자동차 정보
+			<span class="sub">알려드립니다</span>
+			</a>
+			
+			<div class='dropdown'>
+			<a href='/boards/list' class="link7" style='display:inline-block;'>게시판
+			<span class="sub">마음껏 둘러보세요</span></a>
+			<div class='dropdown-content'>
+				<a  href='../boards/list?type=free'>자유게시판</a> 
+				<a  href='../boards/list?type=oldcar'>중고차거래</a> 
+				<a  href='../boards/list?type=travle'>여행지추천</a>
+			</div>
+		</div>
+		</div>
+	<!-- 회원 -->
+		<div style=' display:inline-block; margin-top:20px; margin-left:40px; float:left;'>
+		{% if islogin == False or islogin == None %} 
+			
+			<a href="../members/newmember" class="link6">회원가입</a>
+			<!--  <a href='../members/newmember'style=''>회원가입</a> -->
+			
+			<a href="../members/main" class="link5">로그인</a> 
+			<!-- <a href='../members/main'>로그인</a> -->
+		{% else %} 
+			<a class="link3" href='../members/account'>어서오세요 {{username}}님</a>	
+			<!-- <a href='../members/account'>어서오세요 {{username}}님</a> -->
+			<a class="link3" href='../members/account'>내 정보</a>
+			<!-- <a href='../members/account'>내 정보</a> -->
+			<a href="../members/logout" class="link3">로그아웃</a>
+			<!-- <a href='../members/logout'>로그아웃</a> -->
+		{% endif %}
+		</div> 
+	</div>
+	<!-- end of navbar -->
+</header>
+<!-- --------------------------end of header------------------>
+
+<main>
+<div id="centerColumn">
+  
+  <div id="header">
+    <p class="s1"><b>상세보기</b>
+  </div>
+  <hr/>
+
+  <div id="cell_1">
+    <table id="table_size">
+    {% if pro %}
+    {% for p in pro %}
+    <tr>
+    	<td colspan="2"><img id="imgs" src='/static/images/logos/{{ p.mcar_infoproducts1aker }}.png'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2 style="display:inline;">{{p.car_model}}</h2></td>
+	</tr>
+	<tr>
+		<td rowspan="5" id="td_size"><img id="imgs2" src="/static/images/{{p.mcar_infoproducts1aker}}/{{p.car_model}}.png"></td>
+		<td><strong id="price">{{p.min_pri}} ~ {{p.max_pri}}</strong></td>
+	</tr>
+	<tr>
+		<td><span id="normal">연비</span><br><span id="normal_2">{{p.min_fe}} ~ {{p.max_fe}}</span></td>
+	</tr>
+	
+	
+	{% if p.fuel == 'Gasoline' %}
+	<tr>
+		<td><span id="normal">연료</span><br><span id="normal_2">가솔린</span></td>
+	</tr>
+	{% endif %}
+	{% if p.fuel == 'Gasoline/Hybrid' %}
+	<tr>
+		<td><span id="normal">연료</span><br><span id="normal_2">가솔린, 하이브리드</span></td>
+	</tr>
+	{% endif %}
+	{% if p.fuel == 'Electric' %}
+	<tr>
+		<td><span id="normal">연료</span><br><span id="normal_2">전기</span></td>
+	</tr>
+	{% endif %}
+	{% if p.fuel == 'Diesel' %}
+	<tr>
+		<td><span id="normal">연료</span><br><span id="normal_2">디젤</span></td>
+	</tr>
+	{% endif %}
+	{% if p.fuel == 'Hydrogen' %}
+	<tr>
+		<td><span id="normal">연료</span><br><span id="normal_2">수소</span></td>
+	</tr>
+	{% endif %}
+	{% if p.fuel == 'LPG' %}
+	<tr>
+		<td><span id="normal">연료</span><br><span id="normal_2">엘피지</span></td>
+	</tr>
+	{% endif %}
+	{% if p.fuel == '-' %}
+	<tr>
+		<td><span id="normal">연료</span><br><span id="normal_2">정보없음</span></td>
+	</tr>
+	{% endif %}
+	
+	<tr>
+		<td><span id="normal">차급</span><br><span id="normal_2">{{p.car_type}}</span></td>
+	</tr>
+	<tr>
+		<td><span id="normal">외형</span><br><span id="normal_2">{{p.exterior}}</span></td>
+	</tr>
+	{% endfor %}
+    {% endif %}
+  </table>
+  
+</div>
+<hr/>
+    <!-- 상세 정보 출력 -->
+	<!-- 첫 번째 -->
+	{% if pro %}
+    {% for p in pro %}
+	<div id="cell_2">
+		<div id="cell_3">
+		<table id="table_size_2">	
+			<tr>
+				<td id="td_line"><strong class="normal">치수 데이터</strong><div style="margin-top:10px;"></div></td>
+			</tr>
+			<tr>
+				<td><div style="margin-top:15px;"></div>
+				<strong id="content1" class="normal_2">전장</strong><span id="normal_2">{{p.ol}}</span></td>	
+			</tr>
+			<tr>
+				<td><strong id="content2" class="normal_2">전고</strong><span id="normal_2">{{p.oh}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content3" class="normal_2">공차중량</strong><span id="normal_2">{{p.uvw}}</span></td> 
+			</tr>
+			<tr>
+				<td><strong id="content4" class="normal_2">연료탱크</strong><span id="normal_2">{{p.ftc}}</span></td>
+			</tr>
+		</table>
+		</div>
+
+		<div id="cell_3">
+		<table id="table_size_2">	
+			<tr>
+				<td id="td_line"><strong class="normal" id="oc_1">치수 데이터</strong><div style="margin-top:10px;"></div></td> <!-- 공간 채우기용 텍스트 -->
+			</tr>
+			<tr>
+				<td><div style="margin-top:15px;"></div><strong id="content5" class="normal_2">전폭</strong><span id="normal_2">{{p.ow}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content6" class="normal_2">축거</strong><span id="normal_2">{{p.wb}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content7" class="normal_2">승차인원</strong><span id="normal_2">{{p.limn}}</span></td> 
+			</tr>
+			<tr>
+				<td><strong id="content8" class="normal_2">트렁크용량</strong><span id="normal_2">{{p.tc}}</span></td>
+			</tr>
+		</table>
+
+		</div>
+	</div>
+	{% endfor %}
+    {% endif %}
+    
+    <!-- 두 번째 -->
+    {% if pro %}
+    {% for p in pro %}
+	<div id="cell_2">
+		<div id="cell_3">
+		<table id="table_size_2">	
+			<tr>
+				<td id="td_line"><strong class="normal">엔진 데이터</strong><div style="margin-top:10px;"></div></td>
+			</tr>
+			<tr>
+				<td><div style="margin-top:15px;"></div><strong id="content9" class="normal_2">엔진</strong><span id="normal_2">{{p.eng}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content10" class="normal_2">최고출력</strong><span id="normal_2">{{p.maxp}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content11" class="normal_2">최대토크</strong><span id="normal_2">{{p.maxt}}</span></td> 
+			</tr>
+			<tr>
+				<td><strong id="content12" class="normal_2">엔진위치</strong><span id="normal_2">{{p.engposi}}</span></td>
+			</tr>
+			
+			<tr>
+				<td><strong id="content13" class="normal_2">배터리 종류</strong><span id="normal_2">{{p.battery_tyep}}</span></td> <!-- sql 오타. -->
+			</tr>
+		</table>
+		</div>
+
+		<div id="cell_3">
+		<table id="table_size_2">	
+			<tr>
+				<td id="td_line"><strong class="normal" id="oc_1">엔진 데이터</strong><div style="margin-top:10px;"></div></td> <!-- 공간 채우기용 텍스트 -->
+			</tr>
+			<tr>
+				<td><div style="margin-top:15px;"></div><strong id="content14" class="normal_2">배기량</strong><span id="normal_2">{{p.dm}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content15" class="normal_2">최고출력회전수</strong><span id="normal_2">{{p.maxor}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content16" class="normal_2">최대토크회전수</strong><span id="normal_2">{{p.maxtr}}</span></td> 
+			</tr>
+			<tr>
+				<td><strong id="content17" class="normal_2">최고속도</strong><span id="normal_2">{{p.speed}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content18" class="normal_2">배터리 용량</strong><span id="normal_2">{{p.battery}}</span></td>
+			</tr>
+		</table>
+
+		</div>
+	</div>
+	{% endfor %}
+    {% endif %}
+    
+    <!-- 세 번째 -->
+    {% if pro %}
+    {% for p in pro %}
+	<div id="cell_2">
+		<div id="cell_3">
+		<table id="table_size_2">	
+			<tr>
+				<td id="td_line"><strong class="normal">구동 데이터</strong><div style="margin-top:10px;"></div></td>
+			</tr>
+			<tr>
+				<td><div style="margin-top:15px;"></div><strong id="content19" class="normal_2">구동방식</strong><span id="normal_2">{{p.dt}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content20" class="normal_2">파워스티어링</strong><span id="normal_2">{{p.ps}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content21" class="normal_2">전륜제동장치 형식</strong><span id="normal_2">{{p.fw}}</span></td> 
+			</tr>
+			<tr>
+				<td><strong id="content22" class="normal_2">전륜 타이어 크기</strong><span id="normal_2">{{p.fts}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content23" class="normal_2">전륜 서스펜션</strong><span id="normal_2">{{p.fs}}</span></td>
+			</tr>
+		</table>
+		</div>
+
+		<div id="cell_3">
+		<table id="table_size_2">	
+			<tr>
+				<td id="td_line"><strong class="normal" id="oc_1">구동 데이터</strong><div style="margin-top:10px;"></div></td> <!-- 공간 채우기용 텍스트 -->
+			</tr>
+			<tr>
+				<td><div style="margin-top:15px;"></div><strong id="content24" class="normal_2">변속기</strong><span id="normal_2">{{p.trans}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content25" class="normal_2">스티어링</strong><span id="normal_2">{{p.st}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content26" class="normal_2">후륜제동장치 형식</strong><span id="normal_2">{{p.rw}}</span></td> 
+			</tr>
+			<tr>
+				<td><strong id="content27" class="normal_2">후륜 타이어 크기</strong><span id="normal_2">{{p.rts}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content28" class="normal_2">후륜 서스펜션</strong><span id="normal_2">{{p.rs}}</span></td>
+			</tr>
+		</table>
+
+		</div>
+	</div>
+	{% endfor %}
+    {% endif %}
+    
+    <!-- 네 번째 -->
+    {% if pro %}
+    {% for p in pro %}
+	<div id="cell_2">
+		<div id="cell_3">
+		<table id="table_size_2">	
+			<tr>
+				<td id="td_line"><strong class="normal">연비 데이터</strong><div style="margin-top:10px;"></div></td>
+			</tr>
+			<tr>
+				<td><div style="margin-top:15px;"></div><strong id="content29" class="normal_2">연료</strong><span id="normal_2">{{p.fuel}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content30" class="normal_2">연비</strong><span id="normal_2">{{p.fcr}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content31" class="normal_2">1회 완전충전 주행거리</strong><span id="normal_2">{{p.fcm}}</span></td> 
+			</tr>
+		</table>
+		</div>
+
+		<div id="cell_3">
+		<table id="table_size_2">	
+			<tr>
+				<td id="td_line"><strong class="normal" id="oc_1">연비 데이터</strong>
+				<div style="margin-top:10px;"></div></td> <!-- 공간 채우기용 텍스트 -->
+			</tr>
+			<tr>
+				<td><div style="margin-top:15px;"></div><strong id="content32" class="normal_2">이산화탄소 배출량</strong><span id="normal_2">{{p.cde}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="content33" class="normal_2">연비등급</strong><span id="normal_2">{{p.fer}}</span></td>
+			</tr>
+			<tr>
+				<td><strong id="oc_1">공간 채우기용</strong></td> 
+			</tr>
+		</table>
+
+		</div>
+	</div>
+	{% endfor %}
+    {% endif %}
+	<hr>
+	
+	<!---------------------------------댓글란----------------------------------------->
+	<h2 style='text-align:center'>댓글</h2>
+	<br><br>
+	<table style='text-align:center; width:100%;border-collapse:collapse;border-top:2px solid black;'>
+		{% if allcomments %}
+		{% for com in allcomments %}
+		<tr style=''>
+			<td style='width:15%; border-bottom: 1px solid black;padding: 12px 0px 12px 0px;'>{{ com.username }}</td>
+			<td style='width:70%; text-align:left; border-bottom: 1px solid black;padding: 12px 0px 12px 0px;'>{{ com.comments }}</td>
+			<td style='width:15%; border-bottom: 1px solid black;padding: 12px 0px 12px 0px; '>{{ com.rdate }}</td>
+		</tr>
+		{% endfor %}
+		{% else %}
+		<tr>
+			<td colspan=3>댓글이 존재하지 않습니다</td>
+		</tr>
+		{% endif %}
+		{% if islogin == True %}
+		<tr>
+			<form action='postcomment' method='POST'>{% csrf_token %}
+				<input type='hidden' name='carid' value={{pro.0.id}}>
+				<input type='hidden' name='username' value='{{username}}'>
+				<td colspan=2 style='width:90%'>
+				<textarea name='comment' style='width:90%;resize:none; margin-top:10px;'></textarea></td>
+				<td style='width:10%'>
+				<input type='submit' style="width:50px; height:40px;margin-top:10px;" value='등록'>
+				</td>
+			</form>
+		<tr>
+		{% endif %}
+	</table>
+</div>
+</main>
+
+<footer>
+<br><br><br>
+
+<hr id='footerline'>
+<div style='text-align:center'>
+	<h2>경훈씨의 화성가는 붕붕2팀</h2>
+	<h3>김성우 권은별 조경훈 이승조 조광현</h3>
+</div>
+</footer>
+</body>
+</html>

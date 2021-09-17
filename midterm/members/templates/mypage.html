@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name='description' content='마이페이지'>
+<title>회원정보관리</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link href="/static/css/mypage.css?63" rel="stylesheet" type="text/css">
+</head>
+<form action="/members/account" name="accountFrm" class="account_form"method="post">{% csrf_token %} 
+	<input type="hidden" name="id" value="{{user_one.id}}">
+	<h3>AINACAR mypage</h3>
+	<div class="input_group">
+		<div class="account_txt">
+			<img src="/static/image/사람.png" alt="아이디" width=30px, height=30px>
+		</div>
+	</div>
+	<fieldset class="myp">
+		<input type="text" name="username" class="deco"
+			value="{{user_one.username}}" readonly>
+	</fieldset>
+	<div class="input_group">
+		<div class="account_txt">
+			<img src="/static/image/비밀번호.png" alt="비밀번호" width=30px, height=30px>
+		</div>
+	</div>
+	<fieldset class="myp">
+		<input type="password" class="deco" name="up_passwd"
+			placeholder='비밀번호를 입력해주세요'>
+	</fieldset>
+	<div class="input_group">
+		<div class="account_txt">
+			<img src="/static/image/이름1.png" alt="이름" width=30px, height=30px>
+		</div>
+	</div>
+	<fieldset class="myp">
+		<input type="text" name="text" class="deco"
+			value="{{user_one.full_name}}" readonly>
+	</fieldset>
+	<div class="input_group">
+		<div class="account_txt">
+			<img src="/static/image/이메일.png" alt="이메일" width=30px, height=30px>
+		</div>
+	</div>
+	<fieldset class="myp">
+		<input type="email" name="email" class="deco"
+			value="{{user_one.email}}">
+	</fieldset>
+	<div class="input_group">
+		<div class="account_txt">
+			<img src="/static/image/전화.png" alt="전화" width=30px, height=30px>
+		</div>
+	</div>
+	<fieldset class="myp">
+		<input type="text" name="phone" class="deco"
+			value="{{user_one.phone}}">
+	</fieldset>
+	<br>
+	<br>
+	<div>
+		<input type="button" class="btnSub" id="btnSub" value="수정하기">
+	</div>
+	<div>
+		<input type="button" class="btnCan" id="btnCan" value="취소하기">
+	</div>
+</form>
+<script type="text/javascript" src="/static/js/mypage.js?ver=12"></script>
+</body>
+</html>
+
+

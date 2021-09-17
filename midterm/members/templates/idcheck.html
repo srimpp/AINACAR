@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AINACAR-아이디 중복확인</title>
+<link href="/static/image/Circle-icons-car.svg" rel="shortcut icon" type="image/x-icon">
+</head>
+<body style='text-align: center; background-color:#203864; color:white;'>
+<div class="pop">
+{% if username == True %}
+	<p>이미 등록된 아이디 입니다</p><br>
+	<a href = "#" onclick="opener.document.NewMemForm.username.focus();window.close()"
+	style='border:1px solid white; padding: 10px; border-radius:5px;text-decoration:none;'>닫기</a>
+{% else %}
+	<p>사용 가능한 아이디 입니다</p><br>
+	<a href = "#" onclick="opener.document.NewMemForm.password.focus();window.close()"
+	style='border:2px solid white; color:white; padding: 10px; border-radius:5px; text-decoration:none;'>닫기</a>
+{% endif %}
+</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='shorcut icon' href='#'>
+<title>AINACAR이란?</title>
+<link href="/static/css/mainstyle.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<!-- header: 메뉴바 -->
+<!-------------------------------headerbegin---------------------->
+<header style='margin: auto; text-align:center;'>
+	<div class="navbar">
+		<div style="float:left; margin-top:15px; margin-right:40px;">
+		<a href='/' id='mainlogo'><img src='/static/images/mainlogo/AINACAR.png' width='200px'/></a>
+		</div>
+		<div style='display:inline-block; margin-top:15px; float:left;'>
+      		<a href="/" class="link7" style='display:inline-block;'>홈
+           	<span class="sub">Take me home</span>
+    		</a>
+			
+			<a href='/about' class="link7" style='display:inline-block;'>AINACAR이란?
+			<span class="sub">소개합니다</span>
+			</a>
+			
+			<a href='/carinfo/' class="link7" style='display:inline-block;'>자동차 정보
+			<span class="sub">알려드립니다</span>
+			</a>
+			
+			<div class='dropdown'>
+			<a href='/boards/list' class="link7" style='display:inline-block;'>게시판
+			<span class="sub">마음껏 둘러보세요</span></a>
+			<div class='dropdown-content'>
+				<a  href='../boards/list?type=free'>자유게시판</a> 
+				<a  href='../boards/list?type=oldcar'>중고차거래</a> 
+				<a  href='../boards/list?type=travle'>여행지추천</a>
+			</div>
+		</div>
+		</div>
+	<!-- 회원 -->
+		<div style=' display:inline-block; margin-top:20px; margin-left:40px; float:left;'>
+		{% if islogin == False or islogin == None %} 
+			
+			<a href="../members/newmember" class="link6">회원가입</a>
+			<!--  <a href='../members/newmember'style=''>회원가입</a> -->
+			
+			<a href="../members/main" class="link5">로그인</a> 
+			<!-- <a href='../members/main'>로그인</a> -->
+		{% else %} 
+			<a class="link3" href='../members/account'>어서오세요 {{username}}님</a>	
+			<!-- <a href='../members/account'>어서오세요 {{username}}님</a> -->
+			<a class="link3" href='../members/account'>내 정보</a>
+			<!-- <a href='../members/account'>내 정보</a> -->
+			<a href="../members/logout" class="link3">로그아웃</a>
+			<!-- <a href='../members/logout'>로그아웃</a> -->
+		{% endif %}
+		</div> 
+	</div>
+	<!-- end of navbar -->
+</header>
+<!-- --------------------------end of header------------------>
+<main>
+	<h1 style="text-align:center; font-size:50px;"><u>A</u>ll <u>In</u>formation <u>A</u>bout <u>C</u>ars</h1>
+	<form style='text-align:center; background-color:#203864; padding: 14px;'>
+		<span style='color:white; font-size:15px;'>웹사이트 소개</span>
+	</form>
+	<br>
+ 	<h2 style='text-align:center;'>사용자가 원하는 자동차 정보를 얻고<br>다른 사용자들과 소통 할 수 있는<br>자동차 정보 공유 사이트</h2>
+	<hr size='5px' color=#203864>
+	<h1 style='text-align:center;'>경훈씨의 화성가는 붕붕2팀(과 동물들)</h1>
+	<h3>
+		<table>		
+			<tr>
+			<td><img src='/static/images/about/김성우.png' width='250'><br>팀장:김성우<br>이메일:justinswk95@gmail.com</td>
+			<td><li>일단 팀장</li>
+			<li>담당: 프로젝트 총괄, 메인페이지/검색 개발, 자동차 댓글 DB 개발</li>
+			</td></tr>
+			
+			<tr>
+			<td><img src='/static/images/about/권은별.png' width='250'><br>팀원:권은별<br>이메일:kl1226@naver.com</td>
+			<td><li>홍일점이자 은근 다크호스</li>
+			<li>담당: 회원가입/로그인/마이페이지/세션 개발, 회원 DB 개발</li>
+			</td></tr>
+			
+			<tr><td width='270'><img src='/static/images/about/이승조.png' width='250'><br>팀원:이승조<br>이메일:seungjo0202@gmail.com</td>
+			<td><li>슈. 슈슉. 슈슉. 자. 장고놈아.</li>
+			<li>담당:자동차 정보 개발(공동), 자동차 DB 개발</li>
+			</td></tr>
+			
+			<tr><td><img src='/static/images/about/조광현.png' width='250'><br>팀원:조광현<br>이메일:jgch0828@gmail.com</td>
+			<td><li>포브스 선정 잠이 없는 사람 TOP 1</li>
+			<li>담당: 자동차 정보 개발(공동), 자동차 DB 개발</li>
+			</td></tr>
+			
+			<tr>
+			<td><img src='/static/images/about/조경훈.png' width='250'><br>팀원:조경훈<br>이메일:cckkhh88@naver.com</td>
+			<td><li>마스코트 뀨우~?</li>
+			<li>담당: 게시판 개발, 게시판 DB 개발</li>
+			</td></tr>
+		</table>
+	</h3>
+</main>
+</body>
+</html>

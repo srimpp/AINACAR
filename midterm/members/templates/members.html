@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+<script src="/static/js/members.js"></script>
+<body>
+<table class="table">
+	<tr>
+		<th>번호</th><th>사용자명<th><th>이름</th><th>가입날짜</th>
+	</tr>
+	{% if members %}
+	{% for m in members %}
+	<tr>
+		<td>{{m.id}}</td>
+		<td>{{m.username}}</td>
+		<td>{{m.full_name}}</td>
+		<td>{{m.created_at}}</td>
+	{% endfor %}
+	{% else %}
+	<tr>
+		<td colspan="4">회원자료가 없어요</td>
+	{% endif %}
+</table>
+</body>
+</html>

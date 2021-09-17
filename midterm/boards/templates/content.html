@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상세보기</title>
+<link href="/static/css/mainstyle.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	th, td{padding:10px;}
+	a{background-color:#203864; color:white; padding: 5px; border-radius:5px;}
+</style>
+</head>
+
+<body>
+<!-- header: 메뉴바 -->
+<!-------------------------------headerbegin---------------------->
+<header style='margin: auto; text-align:center;'>
+	<div class="navbar">
+		<div style="float:left; margin-top:15px; margin-right:40px;">
+		<a href='/' id='mainlogo'><img src='/static/images/mainlogo/AINACAR.png' width='200px'/></a>
+		</div>
+		<div style='display:inline-block; margin-top:15px; float:left;'>
+      		<a href="/" class="link7" style='display:inline-block;'>홈
+           	<span class="sub">Take me home</span>
+    		</a>
+			
+			<a href='/about' class="link7" style='display:inline-block;'>AINACAR이란?
+			<span class="sub">소개합니다</span>
+			</a>
+			
+			<a href='/carinfo/' class="link7" style='display:inline-block;'>자동차 정보
+			<span class="sub">알려드립니다</span>
+			</a>
+			
+			<div class='dropdown'>
+			<a href='/boards/list' class="link7" style='display:inline-block;'>게시판
+			<span class="sub">마음껏 둘러보세요</span></a>
+			<div class='dropdown-content'>
+				<a  href='../boards/list?type=free'>자유게시판</a> 
+				<a  href='../boards/list?type=oldcar'>중고차거래</a> 
+				<a  href='../boards/list?type=travle'>여행지추천</a>
+			</div>
+		</div>
+		</div>
+	<!-- 회원 -->
+		<div style=' display:inline-block; margin-top:20px; margin-left:40px; float:left;'>
+		{% if islogin == False or islogin == None %} 
+			
+			<a href="../members/newmember" class="link6">회원가입</a>
+			<!--  <a href='../members/newmember'style=''>회원가입</a> -->
+			
+			<a href="../members/main" class="link5">로그인</a> 
+			<!-- <a href='../members/main'>로그인</a> -->
+		{% else %} 
+			<a class="link3" href='../members/account'>어서오세요 {{username}}님</a>	
+			<!-- <a href='../members/account'>어서오세요 {{username}}님</a> -->
+			<a class="link3" href='../members/account'>내 정보</a>
+			<!-- <a href='../members/account'>내 정보</a> -->
+			<a href="../members/logout" class="link3">로그아웃</a>
+			<!-- <a href='../members/logout'>로그아웃</a> -->
+		{% endif %}
+		</div> 
+	</div>
+	<!-- end of navbar -->
+</header>
+<!-- --------------------------end of header------------------>
+
+<main>
+
+
+<h1 style="text-align: center;">모든 것을 공유하는 공간</h1>
+<table style="width: 100%" class="table">
+	<tr>
+		<td style="text-align: right;">
+			
+			{% if islogin == True %}
+			<a href="/boards/reply?id={{data_one.id}}">댓글</a>
+			{% if username == data_one.name %}
+			<a href="/boards/updatepost?id={{data_one.id}}">수정</a>
+			<a href="/boards/deletepost?id={{data_one.id}}">삭제</a>
+			{% endif %}
+			{% endif %}
+			
+			<a href="/boards/list?page={{page}}">목록</a>
+		</td>
+	</tr>
+</table>
+<div style='color:white; background-color:#203864;border-radius:20px;padding:20px;'>
+<table style="width: 90%; margin-left:auto; margin-right:auto; padding:20px 0px;" class="table">
+	<tr>
+		<td>
+		작성자 : {{data_one.name}}</a>
+		</td>
+		<td>작성일 : {{data_one.bdate}}</td>
+		<td>조회수 : {{data_one.readcnt}}</td>
+	</tr>
+	<tr>
+		<td colspan="3">제목 : {{data_one.title}}</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+		<textarea rows="10" style="width: 100%; border-radius:10px; resize:none;" readonly="readonly">{{data_one.cont}}</textarea>
+		</td>
+	</tr>
+</table>
+</div>
+</main>
+
+<!-- footer, 밑에 있는 팀명 목록 -->
+<!-------------------------------footerbegin---------------------->
+<footer>
+<br><br><br>
+
+<hr width=30% color=#203864>
+<div style='text-align:center'>
+	<h2>TEAM E</h2>
+	<h3>김성우 권은별 조경훈 이승조 조광현</h3>
+</div>
+</footer>
+<!-------------------------------footerend---------------------->
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='shorcut icon' href='#'>
+<title>AINACAR - 차의 모든 정보를 담다</title>
+<link href="/static/css/mainstyle.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	h2{
+	text-align:center;
+	}
+	table{
+	margin:auto;
+	width:700px;
+	border-collapse:collapse;
+	border-top:2px solid black;
+	border-bottom: 2px solid black;
+	}
+	td{
+	border-bottom:solid thin grey; text-overflow:ellipsis; overflow:hidden;white-space:nowrap;padding:10px;
+	text-align:center;
+	}
+	th{
+	padding:10px;
+	color:white;
+	}
+	a{
+	text-decoration:none;
+	color:black;
+	}
+</style>
+</head>
+<body>
+<!-- header: 메뉴바 -->
+<!-------------------------------headerbegin---------------------->
+<header style='margin: auto; text-align:center;'>
+	<div class="navbar">
+		<div style="float:left; margin-top:15px; margin-right:40px;">
+		<a href='/' id='mainlogo'><img src='/static/images/mainlogo/AINACAR.png' width='200px'/></a>
+		</div>
+		<div style='display:inline-block; margin-top:15px; float:left;'>
+      		<a href="/" class="link7" style='display:inline-block;'>홈
+           	<span class="sub">Take me home</span>
+    		</a>
+			
+			<a href='/about' class="link7" style='display:inline-block;'>AINACAR이란?
+			<span class="sub">소개합니다</span>
+			</a>
+			
+			<a href='/carinfo/' class="link7" style='display:inline-block;'>자동차 정보
+			<span class="sub">알려드립니다</span>
+			</a>
+			
+			<div class='dropdown'>
+			<a href='/boards/list' class="link7" style='display:inline-block;'>게시판
+			<span class="sub">마음껏 둘러보세요</span></a>
+			<div class='dropdown-content'>
+				<a  href='../boards/list?type=free'>자유게시판</a> 
+				<a  href='../boards/list?type=oldcar'>중고차거래</a> 
+				<a  href='../boards/list?type=travle'>여행지추천</a>
+			</div>
+		</div>
+		</div>
+	<!-- 회원 -->
+		<div style=' display:inline-block; margin-top:20px; margin-left:40px; float:left;'>
+		{% if islogin == False or islogin == None %} 
+			
+			<a href="../members/newmember" class="link6">회원가입</a>
+			<!--  <a href='../members/newmember'style=''>회원가입</a> -->
+			
+			<a href="../members/main" class="link5">로그인</a> 
+			<!-- <a href='../members/main'>로그인</a> -->
+		{% else %} 
+			<a class="link3" href='../members/account'>어서오세요 {{username}}님</a>	
+			<!-- <a href='../members/account'>어서오세요 {{username}}님</a> -->
+			<a class="link3" href='../members/account'>내 정보</a>
+			<!-- <a href='../members/account'>내 정보</a> -->
+			<a href="../members/logout" class="link3">로그아웃</a>
+			<!-- <a href='../members/logout'>로그아웃</a> -->
+		{% endif %}
+		</div> 
+	</div>
+	<!-- end of navbar -->
+</header>
+<!-- --------------------------end of header------------------>
+
+<main>
+<h1>"{{searchword}}" 검색결과</h1>
+<h2>게시판</h2>
+{% if data_board %}
+	<table>
+	<tr style='background-color:#203864;'>
+		<th style='width:50px;border-bottom:2px solid black;'>번호</th>
+		<th style='width:400px;border-bottom:2px solid black;'>제목</th>
+		<th style='width:150px;border-bottom:2px solid black;'>작성자</th>
+		<th style='width:150px;border-bottom:2px solid black;'>작성일</th>
+	</tr>
+	{% for d in data_board %}
+	<tr>
+		<td>{{ d.id }}</td>
+		<td style='text-align:left;'><a href="/boards/content?id={{d.id}}">
+		{{ d.title }}
+		</a>
+		</td>
+		<td>{{ d.name }}</td>
+		<td>{{ d.bdate.year }}.{{ d.bdate.month }}.{{ d.bdate.day }}</td>
+	</tr>
+	{% endfor %}
+	</table>
+{% endif %}
+<br>
+<h2>차종</h2>
+{% if data_carinfo %}
+	<table>
+	<tr style='background-color:#203864;'>
+		<th style='width:300px;border-bottom:2px solid black;'>차종</th>
+		<th style='width:100px;border-bottom:2px solid black;'>브랜드</th>
+		<th style='width:100px;border-bottom:2px solid black;'>출시일</th>
+		<th style='width:50px;border-bottom:2px solid black;'>종류</th>
+	</tr>
+	{% for c in data_carinfo %}
+	<tr>
+		<td style='text-align:left;'><a href="/carinfo/product?id={{c.id}}">
+		{{ c.car_model }}
+		</a>
+		<td>{{ c.mcar_infoproducts1aker }}</td>
+		<td>{{ c.rdate.year }}.{{ c.rdate.month }}.{{ c.rdate.day }}</td>
+		<td>{{ c.car_type }}</td>
+	</tr>
+	{% endfor %}
+	</table>
+
+{% endif %}
+
+
+
+</main>
+
+<footer>
+<br><br><br>
+
+<hr width=30% color=#203864>
+<div style='text-align:center'>
+	<h2>TEAM E</h2>
+	<h3>김성우 권은별 조경훈 이승조 조광현</h3>
+</div>
+</footer>
+
+</body>
+</html>

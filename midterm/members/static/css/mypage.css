@@ -1,0 +1,106 @@
+/* mypage.html */
+*{
+	margin : 0px;
+	padding : 0px;
+	text-decoration : none;
+}
+
+body {
+	background-color:rgb(32,56,100);
+}
+
+
+.account_form {
+	position : absolute;
+	top : -35%;
+	width: 500px;
+	height : 800px;
+	padding: 30px, 20px;
+	background-color : #fff;
+	text-align: center;
+	left:50%;
+	transform: translate(-50%,50%);
+	border : 6px solid rgb(32,56,100)
+}
+
+.account_form h3{
+	text-align:center;
+	margin:30px;
+	font-family:fantasy;
+}
+
+.account_txt {
+	position:relative;
+	left:-35%;
+	color:rgb(32,56,100);
+	font-size:16px;
+}
+
+.myp {
+	border:1px solid rgb(32,56,100);
+	margin: 30px;
+	padding : 10px 10px;
+	margin-bottom: 5px;
+	
+}
+
+.deco {
+	width: 100%;
+	border: none;
+	outline: none;
+	color: rgb(32,56,100);
+	font-size:16px;
+	height:25px;
+	background: none;
+}
+
+input:read-only {
+	background-color:#dae4f8;
+}
+
+.btnSub {
+	position : relative;
+	left:20%;
+	transform : translateX(-50%);
+	margin-bottom: 10px;
+	width:40%;
+	height:40px;
+	background:#b8cbef;
+	background-position:left;
+	background-size:200%;
+	color:black;
+	border:none;
+	cursor:pointer;
+	transition:0.4s;
+	display:inline-block;
+	
+}
+
+
+.btnSub:hover {
+	background-color: rgb(32,56,100);
+	color:white;
+}
+
+
+.btnCan{
+	position : relative;
+	left:20%;
+	transform : translateX(-50%);
+	margin-bottom: 40px;
+	outline-style:solid;
+	width:40%;
+	height:40px;
+	background:rgb(146, 176, 232);
+	background-position:left;
+	background-size:200%;
+	color:white;
+	border:none;
+	cursor:pointer;
+	transition:0.4s;
+	display:inline-block;
+}
+
+.account_txt img{
+	margin-bottom:-50px;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='shorcut icon' href='#'>
+<title>AINACAR - 차의 모든 정보를 담다</title>
+<link href="/static/css/mainstyle.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<!-- header: 메뉴바 -->
+<!-------------------------------headerbegin---------------------->
+<header style='margin: auto; text-align:center;'>
+	<div class="navbar">
+		<div style="float:left; margin-top:15px; margin-right:40px;">
+		<a href='/' id='mainlogo'><img src='/static/images/mainlogo/AINACAR.png' width='200px'/></a>
+		</div>
+		<div style='display:inline-block; margin-top:15px; float:left;'>
+      		<a href="/" class="link7" style='display:inline-block;'>홈
+           	<span class="sub">Take me home</span>
+    		</a>
+			
+			<a href='/about' class="link7" style='display:inline-block;'>AINACAR이란?
+			<span class="sub">소개합니다</span>
+			</a>
+			
+			<a href='/carinfo/' class="link7" style='display:inline-block;'>자동차 정보
+			<span class="sub">알려드립니다</span>
+			</a>
+			
+			<div class='dropdown'>
+			<a href='/boards/list' class="link7" style='display:inline-block;'>게시판
+			<span class="sub">마음껏 둘러보세요</span></a>
+			<div class='dropdown-content'>
+				<a  href='../boards/list?type=free'>자유게시판</a> 
+				<a  href='../boards/list?type=oldcar'>중고차거래</a> 
+				<a  href='../boards/list?type=travle'>여행지추천</a>
+			</div>
+		</div>
+		</div>
+	<!-- 회원 -->
+		<div style=' display:inline-block; margin-top:20px; margin-left:40px; float:left;'>
+		{% if islogin == False or islogin == None %} 
+			
+			<a href="../members/newmember" class="link6">회원가입</a>
+			<!--  <a href='../members/newmember'style=''>회원가입</a> -->
+			
+			<a href="../members/main" class="link5">로그인</a> 
+			<!-- <a href='../members/main'>로그인</a> -->
+		{% else %} 
+			<a class="link3" href='../members/account'>어서오세요 {{username}}님</a>	
+			<!-- <a href='../members/account'>어서오세요 {{username}}님</a> -->
+			<a class="link3" href='../members/account'>내 정보</a>
+			<!-- <a href='../members/account'>내 정보</a> -->
+			<a href="../members/logout" class="link3">로그아웃</a>
+			<!-- <a href='../members/logout'>로그아웃</a> -->
+		{% endif %}
+		</div> 
+	</div>
+	<!-- end of navbar -->
+</header>
+<!-- --------------------------end of header------------------>
+
+
+<!-- 메인: 여기 컨텐츠 올림 -->
+<!-------------------------------mainbegin---------------------->
+<main>
+	<br>
+	<h1 style="text-align:center;">AINICAR에 오신 것을 환영합니다</h1>
+	<br>
+	<!-- 검색 -->
+	<h2 style='text-align:center;'>통합 검색</h2>
+	<br>
+	<div style='border-radius:20px; background-color:#203864;'>
+		<form action='/search' method='POST' style='text-align:center;
+			 padding: 14px;'>{% csrf_token %}
+			
+			<select name='boardtype' style="position: relative; right:250px; top:39px; height:39px;">
+				<option value='all' selected='selected'>전체</option>
+				<option value='board'>게시판</option>
+				<option value='carinfo'>자동차</option>
+			</select>
+			
+			<div style="display:inine-block;">
+			<input type="text" name='searchword' class="form__input" id="name" placeholder="무엇을 찾고싶으세요?"/> <!-- required="" : 필수 입력이 아니므로 제거 -->
+  			<label for="name" class="form__label">입력중입니다...</label>
+			</div>
+			<div style="float:right; position:relative; bottom:87px; right:60px;">
+			<input class="sm" type='submit' value='검색'>
+			</div>			
+			<!-- <input type='text' name='searchword'>  -->
+		</form>
+	</div>
+	
+	<br>
+ 	<h2 style='text-align:center;'>브랜드별 시판 자동차 목록 바로가기</h2>
+	<hr size='5px' color=#203864>
+	<table style='border:0px; margin-left:auto; margin-right:auto; font-size:15pt; 
+	border-spacing:25px;'>
+	<tr>
+	<!-- logos가 존재하면 실행 -->
+	{% if logos %}
+		{% for l in logos %}
+			<!-- static/logos 폴더 안에 있는 브랜드 이름을 가진 이미지를 출력  -->
+			<td><a href='../carinfo/?brand={{l.0}}'><img src='/static/images/logos/{{ l.0 }}.png' width='100'></a></td>
+			<!-- 4번째 항목일 경우 tr생성 -->
+			{% if forloop.counter == 4 %}
+				</tr><tr>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+	</tr>
+	<tr>
+	<td colspan="5" style="text-align: center;">
+	<div>
+		<hr>
+		<!-- 페이징 -->
+		{% if logos.has_previous %}
+			<a href="?page={{logos.previous_page_number}}" style='text-decoration:none; background-color:#203864; color:white; padding: 10px; border-radius:5px;'>이전</a>
+		{% else %}
+			<a href='' tabindex='-1' aria-disabled='true' style='text-decoration:none; background-color:#203864; color:white; padding: 10px; border-radius:5px;'>이전</a>
+		{% endif %}
+		
+		{% if logos.has_next %}
+			<a href="?page={{logos.next_page_number}}" style='background-color:#203864; color:white; padding: 10px; border-radius:5px;'>다음</a>
+		{% else %}
+			<a href='' tabindex='-1' aria-disabled='true' style='background-color:#203864; color:white; padding: 10px; border-radius:5px;'>다음</a>
+		{% endif %}
+	</div>
+	</td>
+	</tr>
+	</table>
+</main>
+<!-------------------------------mainend---------------------->
+
+
+<!-- footer, 밑에 있는 팀명 목록 -->
+<!-------------------------------footerbegin---------------------->
+<footer>
+<br><br><br>
+
+<hr id='footerline'>
+<div style='text-align:center'>
+	<h2>경훈씨의 화성가는 붕붕2팀</h2>
+	<h3>김성우 권은별 조경훈 이승조 조광현</h3>
+</div>
+</footer>
+<!-------------------------------footerend---------------------->
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name='description' content='회원가입'>
+<title>AINACAR-회원가입</title>
+<link href="/static/image/Circle-icons-car.svg" rel="shortcut icon" type="image/x-icon">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link href="/static/css/newmem.css?af" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+<form action="/members/newmember" name="NewMemForm" class="newmem_form" method="post">{% csrf_token %}
+	<h3>AINACAR 회원가입</h3>
+	<fieldset class = "btn-id" style='position:absolute; margin-left:65px;'>
+		<input type=button id="btnIdOk" class="btnIdOk" value="아이디중복확인">
+	</fieldset>
+	<fieldset class = "name">
+		<input type="text" name="username" class="deco" placeholder="아이디(한글영문숫자조합 4자이상)" autofocus>
+	</fieldset>
+	<fieldset class = "input-group">
+		<input type="password" name="password" class="deco" placeholder="비밀번호(영문숫자조합 6-12자이상)">
+	</fieldset>
+	<fieldset class = "input-group">
+		<input type="password" name="repassword"  class="deco" placeholder="비밀번호확인">
+	</fieldset>					
+	<fieldset class = "input-group">
+		<input type="email" name="email" class="deco" placeholder="이메일">
+	</fieldset>
+	<fieldset class = "input-group">
+		<input type="text" name="full_name" class="deco" placeholder="이름">
+	</fieldset>
+	<fieldset class = "input-group">
+		<input type="text" name="phone" class="deco" placeholder="전화번호">
+	</fieldset>
+	<br>
+	<fieldset class = "btn-signup">
+		<input type=button id="btnSignUp" class="btnSineUp" value="가입하기">
+	</fieldset>
+	<fieldset class = "btn-signup">
+	<input type="button" id = "btnCan" class= "btnCan" value="취소하기">
+	</fieldset>
+</form>
+<script type="text/javascript" src="/static/js/newmem.js?ver=11"></script>
+</body>
+</html>

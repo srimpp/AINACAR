@@ -1,0 +1,233 @@
+/* Navbar container */
+.navbar {
+	overflow: hidden;
+	background-color: #203864;
+	font-family: Arial;
+	text-align:center;
+	display: flex;
+	width:100%;
+}
+
+.navbar > div {
+	width:100%;
+}
+
+
+/* Links inside the navbar */
+/*  position:absolute;
+  left:50%;
+  transform:translate(-50%, -50%);
+ */
+.navbar a {
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  padding: 6px 16px;
+  text-decoration: none;
+  display:inline;
+}
+
+
+/* The dropdown container */
+.dropdown {
+  display:inline-block;
+  overflow: visible;
+}
+
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  font-size:16px;
+}
+
+
+
+/* Dropdown button */
+#mainlogo:hover{
+	background-color: #203864;
+}
+
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+
+
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+#footerline {
+	width:30%;
+	color:#203864;
+	size:3px;
+}
+
+a{
+	text-decoration:none;
+}
+
+select{
+	font-size:15px;
+	width:100px;
+	padding:5px 10px;
+	border:none;
+	border-radius:4px;
+	background-color:#f1f1f1;
+}
+
+input[type=submit]{
+	border:none;
+	padding: 5px 10px;
+	text-decoration: none;
+}
+input[type=text]{
+	border:none;
+	padding: 7px 10px;
+	text-decoration:none;
+	width:300px;
+}
+
+h1{
+	text-align:center;
+}
+
+
+.link4{position: relative;}
+.link4::after{position:absolute; bottom: 0; left: 0; display: block; content: ''; width: 100%; border-bottom: 3px solid #dcdcdc; height: 1px; transform: translateY(-15px); opacity: 0; transition: all 0.5s;}
+.link4:hover::after{opacity: 1; transform: translateY(-5px);}
+
+.link6{position: relative; padding: 0; width: 200px; height: 30px; line-height: 30px; border: 3px solid rgba(255,255,255,0.4); box-sizing: border-box;}
+.link6::after{position: absolute;display: block; content: ''; width: 119px; height: 40px; border: 3px solid #dcdcdc; top: -8px; right: -10px; opacity: 0; transition: all 0.5s; padding: 0; box-sizing: border-box;}
+.link6:hover::after{top: -3px; right: -3px; opacity: 1;}
+
+.link5{position: relative; padding: 0; width: 200px; height: 30px; line-height: 30px; border: 3px solid rgba(255,255,255,0.4); box-sizing: border-box;}
+.link5::after{position: absolute;display: block; content: ''; width: 100px; height: 40px; border: 3px solid #ffff; top: -8px; right: -10px; opacity: 0; transition: all 0.5s; padding: 0; box-sizing: border-box;}
+.link5:hover::after{top: -3px; right: -3px; opacity: 1;}
+
+.link7{ position: relative; }
+.link7 .sub{display: block; font-size: 14px; line-height: 20px; opacity: 0; transition: all 0.5s; transform: translateY(-8px);}
+.link7::before{display: block; position: absolute; width: 100%; content: ''; height: 5px; box-sizing: border-box; top: 0; left: 0; transition: all 0.5s;}
+.link7::after{display: block; position: absolute; width: 100%; content: ''; height: 1px; border-bottom: 2px solid #dcdcdc; bottom:0; left:0; opacity: 0; transition: all 0.5s;transform: translateY(-8px);}
+.link7:hover .sub{opacity: 1;transform: translateY(0);}
+.link7:hover::before{border-top: 5px solid #dcdcdc;}
+.link7:hover::after{opacity: 1;transform: translateY(0);}
+
+
+
+
+
+
+.link3::before{content: '['; opacity: 0; margin-left: 10px; transition: all 0.5s;}
+.link3::after{content: ']'; opacity: 0; margin-right: 10px; transition: all 0.5s;}
+.link3:hover::before{opacity: 1; margin-left: 0; margin-right: 10px;}
+.link3:hover::after{opacity: 1; margin-left: 0; margin-left: 10px;}
+
+.sm{
+  background:#46BD7B;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:40px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  margin-top:10px;
+}
+.sm:hover{
+  background:#fff;
+  color:#46BD7B;
+}
+.sm:before,.sm:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+.sm:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.sm:hover:before,.sm:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+
+
+.form__label {
+  font-family: 맑은고딕, Malgun Gothic, dotum, gulim, sans-serif;
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  display: block;
+  transition: all 0.3s;
+  transform: translateY(0rem);
+  color: white;
+}
+
+.form__input {
+  font-family: 맑은고딕, Malgun Gothic, dotum, gulim, sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: 90%;
+  display: inline;
+  border-bottom: 0.3rem solid transparent;
+  transition: all 0.3s;
+}
+
+.form__input:placeholder-shown + .form__label {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateY(-4rem);
+  transform: translateY(-4rem);
+}
+
+
+
+/*-------------------------MAIN CSS---------------------------*/
+main{
+	width:700px;
+	min-height:700px;
+	margin:auto;
+	color:'blue';
+}

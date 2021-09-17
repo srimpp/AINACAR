@@ -1,0 +1,51 @@
+/*members.html*/
+*{
+	margin : 0px;
+	padding : 0px;
+	text-decoration : none;
+}
+
+.member_list {
+	border-collapse : collapse;
+	width:100%;
+}
+
+.member_list td, .member_list th {
+	border: 1px solid #789de2;
+	padding:8px;
+}
+
+.member_list tr:nth-child(even){
+	background-color: #b8cbef;
+}
+
+.member_list tr:hover{
+	background-color: rgb(32,56,100);
+	color: white;
+}
+
+.member_list th {
+	padding-top : 12px;
+	padding-bottom:12px;
+	text-align: center;
+	background-color:rgb(32,56,100);
+	color:white;
+}
+.page {
+	text-align:center;
+	font-size: 16px;
+	font-weight:bold;
+}
+
+.page a {
+	color: rgb(32,56,100);
+	font-size: 16px;
+}
+
+.page a.active {
+	background-color: #b8cbef;
+}
+
+#num {
+	width:10%;
+}

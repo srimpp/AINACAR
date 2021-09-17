@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인페이지</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link href="/static/css/login.css?3" rel="stylesheet" type="text/css"> 
+</head>
+
+<body> 
+<form action="/members/main" name="loginForm" class='login_form' method="post">{% csrf_token %}
+	<h3>AINACAR 로그인</h3>
+		<fieldset class = "input_form">
+			<input type="text" name="username" class = "deco" placeholder="아이디" autofocus>
+		</fieldset>
+		<fieldset class = "input_form">
+			<input type="password" name="password" class="deco" placeholder="비밀번호">
+		</fieldset>
+		<fieldset class=input_form">
+			<button type='submit' class='btnSubmit'>로그인</button>
+		</fieldset>
+		<fieldset class="bottomText">
+			<span>아이디가 없다면?</span>&nbsp;&nbsp;&nbsp;<a href="/members/newmember">회원가입</a>
+		</fieldset>
+		{% if error %}
+		<div class="show_form">{{error}}</div>
+		{% endif %}
+		
+</form>
+
+<!-- <script type="text/javascript" src="/static/js/login.js?ver=3"></script> -->
+</body>
+</html>
